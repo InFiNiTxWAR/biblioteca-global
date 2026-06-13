@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Biblioteca do Primeiro Alvorecer</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ===========================
+   RESET
+=========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ===========================
+   BODY
+=========================== */
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(rgba(8, 12, 8, .88),
+                    rgba(6, 10, 6, .94)),
+
+                url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            color: #f4e7c1;
+        }
+
+        /* ===========================
+   HEADER
+=========================== */
+
+        header {
+
+            padding: 70px 20px;
+
+            text-align: center;
+
+            border-bottom: 1px solid rgba(214, 170, 83, .25);
+
+            backdrop-filter: blur(2px);
+        }
+
+        header h1 {
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 3.8rem;
+
+            color: #f5d48b;
+
+            text-shadow:
+                0 0 15px rgba(245, 212, 139, .35);
+
+            margin-bottom: 15px;
+        }
+
+        header .subtitulo {
+
+            font-size: 1.5rem;
+
+            color: #d8c79d;
+
+            font-style: italic;
+
+            margin-bottom: 20px;
+        }
+
+        header .descricao {
+
+            max-width: 900px;
+
+            margin: auto;
+
+            font-size: 1.25rem;
+
+            line-height: 1.7;
+
+            color: #e7d7b1;
+        }
+
+        /* ===========================
+   CONTAINER
+=========================== */
+
+        .container {
+
+            max-width: 1500px;
+
+            margin: auto;
+
+            padding: 50px 30px 80px;
+        }
+
+        /* ===========================
+   TITULOS DE SESSÃO
+=========================== */
+
+        .secao-titulo {
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 2rem;
+
+            color: #f5d48b;
+
+            margin-bottom: 10px;
+
+            text-shadow:
+                0 0 8px rgba(245, 212, 139, .25);
+        }
+
+        .secao-descricao {
+
+            font-size: 1.2rem;
+
+            color: #d7c59b;
+
+            margin-bottom: 30px;
+
+            line-height: 1.7;
+        }
+
+        .separador {
+
+            margin: 60px 0;
+
+            height: 2px;
+
+            background:
+                linear-gradient(90deg,
+                    transparent,
+                    rgba(214, 170, 83, .6),
+                    transparent);
+        }
+
+        /* ===========================
+   GRID DE LIVROS
+=========================== */
+
+        .grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(320px, 1fr));
+
+            gap: 25px;
+        }
+
+        /* ===========================
+   CARD PADRÃO
+=========================== */
+
+        .card {
+
+            background:
+                rgba(35, 25, 15, .93);
+
+            border: 2px solid #8f6b2c;
+
+            border-radius: 14px;
+
+            padding: 24px;
+
+            transition: .35s;
+
+            box-shadow:
+                0 0 15px rgba(0, 0, 0, .45);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 4px;
+
+            background:
+                linear-gradient(90deg,
+                    transparent,
+                    #d6aa53,
+                    transparent);
+        }
+
+        .card:hover {
+
+            transform: translateY(-8px);
+
+            border-color: #d6aa53;
+
+            box-shadow:
+                0 0 25px rgba(214, 170, 83, .20);
+        }
+
+        .card h3 {
+
+            font-family: 'Cinzel', serif;
+
+            font-size: 1.25rem;
+
+            color: #f5d48b;
+
+            margin-bottom: 10px;
+
+            line-height: 1.4;
+        }
+
+        .categoria {
+
+            display: inline-block;
+
+            padding: 5px 10px;
+
+            background:
+                rgba(214, 170, 83, .12);
+
+            border: 1px solid rgba(214, 170, 83, .25);
+
+            border-radius: 20px;
+
+            font-size: .95rem;
+
+            margin-bottom: 15px;
+
+            color: #f3d18b;
+        }
+
+        .card p {
+
+            font-size: 1.08rem;
+
+            line-height: 1.6;
+
+            color: #e6d7b5;
+
+            margin-bottom: 18px;
+        }
+
+        /* ===========================
+   RECOMPENSAS
+=========================== */
+
+        .recompensa {
+
+            background:
+                rgba(0, 0, 0, .20);
+
+            border-left: 4px solid #d6aa53;
+
+            padding: 12px;
+
+            border-radius: 6px;
+
+            font-size: 1rem;
+
+            margin-bottom: 18px;
+
+            line-height: 1.6;
+        }
+
+        .recompensa strong {
+
+            color: #f5d48b;
+        }
+
+        /* ===========================
+   BOTÃO
+=========================== */
+
+        .btn {
+
+            width: 100%;
+
+            border: none;
+
+            cursor: pointer;
+
+            padding: 12px;
+
+            font-size: 1rem;
+
+            font-weight: bold;
+
+            font-family: 'Cinzel', serif;
+
+            border-radius: 8px;
+
+            background: #8f6b2c;
+
+            color: white;
+
+            transition: .3s;
+        }
+
+        .btn:hover {
+
+            background: #d6aa53;
+
+            color: #23170d;
+        }
+
+        /* ===========================
+   LIVRO RARO
+=========================== */
+
+        .raro {
+
+            border: 2px solid #c9a84a;
+
+            background:
+                rgba(58, 44, 18, .94);
+        }
+
+        .raro::before {
+
+            background:
+                linear-gradient(90deg,
+                    transparent,
+                    #ffd369,
+                    transparent);
+        }
+
+        .raro h3 {
+
+            color: #ffd369;
+        }
+
+        /* ===========================
+   ALA PROIBIDA
+=========================== */
+
+        .proibido {
+
+            background:
+                rgba(30, 10, 10, .95);
+
+            border: 2px solid #8f1d1d;
+        }
+
+        .proibido::before {
+
+            background:
+                linear-gradient(90deg,
+                    transparent,
+                    #d64040,
+                    transparent);
+        }
+
+        .proibido h3 {
+
+            color: #ff7b7b;
+        }
+
+        .proibido .categoria {
+
+            background:
+                rgba(255, 0, 0, .10);
+
+            border-color:
+                rgba(255, 0, 0, .25);
+
+            color: #ff9b9b;
+        }
+
+        .proibido .btn {
+
+            background: #7f1d1d;
+        }
+
+        .proibido .btn:hover {
+
+            background: #c73434;
+
+            color: white;
+        }
+
+        /* ===========================
+   VOLTAR
+=========================== */
+
+        .voltar {
+
+            text-align: center;
+
+            margin-top: 60px;
+        }
+
+        .voltar a {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            padding: 12px 25px;
+
+            border-radius: 8px;
+
+            background: #8f6b2c;
+
+            color: white;
+
+            font-family: 'Cinzel', serif;
+
+            transition: .3s;
+        }
+
+        .voltar a:hover {
+
+            background: #d6aa53;
+
+            color: #23170d;
+        }
+
+        /* ===========================
+   FOOTER
+=========================== */
+
+        footer {
+
+            text-align: center;
+
+            padding: 40px;
+
+            border-top: 1px solid rgba(214, 170, 83, .15);
+
+            color: #c9b27a;
+
+            font-size: 1rem;
+        }
+
+        /* ===========================
+   RESPONSIVO
+=========================== */
+
+        @media(max-width:768px) {
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header .descricao {
+                font-size: 1.1rem;
+            }
+
+            .secao-titulo {
+                font-size: 1.6rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <h1>🏛️ Biblioteca do Primeiro Alvorecer</h1>
+
+        <div class="subtitulo">
+            "Antes dos reinos, existia o conhecimento."
+        </div>
+
+        <div class="descricao">
+
+            Acredita-se que esta biblioteca exista fora do fluxo normal do mundo. Alguns textos afirmam que ela está
+            enterrada sob o continente. Outros dizem que ela existe em uma dimensão esquecida entre o Véu de Lunaris e a
+            Fissura. Nenhum mapa leva até ela. Nenhuma expedição retornou com provas concretas. Mas todos os reinos
+            possuem registros que citam sua existência. Dizem que cada livro guardado aqui é um original. Não cópias. O
+            primeiro registro de cada conhecimento já criado.
+
+        </div>
+
+    </header>
+
+    <div class="container">
+
+
+        <!-- ====================================================
+📚 ARQUIVOS FUNDAMENTAIS DA CIVILIZAÇÃO
+==================================================== -->
+
+        <h2 class="secao-titulo">📖 Arquivos Fundamentais da Civilização</h2>
+
+        <p class="secao-descricao">
+            Sistema de Recompensa de Leitura<br>
+            EXP de Ofício: 20 a 40<br>
+            NEA (Nível de Energia Ancestral): 0,1% a 0,5%<br>
+            Cada livro pode ser lido apenas uma vez para obter recompensas.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>📖 O Livro dos Primeiros Reis</h3>
+                <div class="categoria">Historiador Imperial</div>
+                <p>Contém os nomes dos governantes anteriores ao Milênio Perdido.</p>
+                <div class="recompensa">
+                    <strong>Recompensa:</strong><br>
+                    +40 EXP Historiador Imperial<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('381')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Crônicas da Fundação do Mundo Conhecido</h3>
+                <div class="categoria">Historiador Arcano</div>
+                <p>Relata os primeiros assentamentos do continente.</p>
+                <div class="recompensa">
+                    +40 EXP Historiador Arcano<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('417')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Atlas Original do Continente</h3>
+                <div class="categoria">Cartógrafo</div>
+                <p>Mapa anterior ao surgimento dos reinos modernos.</p>
+                <div class="recompensa">
+                    +40 EXP Cartógrafo<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('592')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 O Século Perdido</h3>
+                <div class="categoria">Pesquisador Arcano</div>
+                <p>Compilação dos eventos apagados da história.</p>
+                <div class="recompensa">
+                    +40 EXP Pesquisador Arcano<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('208')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 As 999 Cidades Esquecidas</h3>
+                <div class="categoria">Arqueólogo Arcano</div>
+                <p>Registro de cidades desaparecidas.</p>
+                <div class="recompensa">
+                    +40 EXP Arqueólogo Arcano<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('734')">Ler Livro</button>
+            </div>
+
+        </div>
+
+        <div class="separador"></div>
+
+        <!-- ====================================================
+⚔️ ARQUIVOS DOS CAMINHOS MARCIAIS
+==================================================== -->
+
+        <h2 class="secao-titulo">⚔️ Arquivos dos Caminhos Marciais</h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>📖 O Caminho das Raízes Eternas</h3>
+                <div class="categoria">Guerreiro Espiritual</div>
+                <p>Reino: Sylvanora. Primeiro registro da arte marcial dos Guardiões da Floresta.</p>
+                <div class="recompensa">
+                    +40 EXP Guerreiro Espiritual<br>
+                    +0,4% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('651')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Fluxo de Estelaris</h3>
+                <div class="categoria">Druida de Guerra</div>
+                <p>Reino: Elyndor. Manual dos primeiros druidas guerreiros.</p>
+                <div class="recompensa">
+                    +40 EXP Druida de Guerra<br>
+                    +0,4% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('146')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Disciplina Solar Suprema</h3>
+                <div class="categoria">Estrategista</div>
+                <p>Reino: Solharis. A versão original da arte militar heliônica.</p>
+                <div class="recompensa">
+                    +40 EXP Estrategista<br>
+                    +0,4% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('883')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Véu Celestial Original</h3>
+                <div class="categoria">Manipulador Gravitacional</div>
+                <p>Reino: Lunaris. Primeira técnica de manipulação gravitacional.</p>
+                <div class="recompensa">
+                    +40 EXP Manipulador Gravitacional<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('327')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Caminho das Dunas Ancestrais</h3>
+                <div class="categoria">Guerreiro do Deserto</div>
+                <p>Reino: Zaharam. Arte marcial criada pelos fundadores do deserto.</p>
+                <div class="recompensa">
+                    +40 EXP Guerreiro do Deserto<br>
+                    +0,4% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('719')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Martelo Primordial</h3>
+                <div class="categoria">Guerreiro de Montanha</div>
+                <p>Reino: Voldoun. Primeira doutrina de combate dos anões.</p>
+                <div class="recompensa">
+                    +40 EXP Guerreiro de Montanha<br>
+                    +0,4% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('455')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Olho Absoluto</h3>
+                <div class="categoria">Sentinela</div>
+                <p>Reino: Odrin. Manual original das Sentinelas.</p>
+                <div class="recompensa">
+                    +40 EXP Sentinela<br>
+                    +0,4% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('624')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Coração Magmático Original</h3>
+                <div class="categoria">Guerreiro Ifritiano</div>
+                <p>Reino: Silver Rise. Primeira arte marcial ifritiana.</p>
+                <div class="recompensa">
+                    +40 EXP Guerreiro Ifritiano<br>
+                    +0,4% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('872')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Presa Primordial</h3>
+                <div class="categoria">Assassino</div>
+                <p>Reino: Black Marsh. Combate ancestral dos Serpenthari.</p>
+                <div class="recompensa">
+                    +40 EXP Assassino<br>
+                    +0,4% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('291')">Ler Livro</button>
+            </div>
+
+        </div>
+
+        <div class="separador"></div>
+
+        <!-- ====================================================
+🐉 ARQUIVOS DOS DRAGÕES
+==================================================== -->
+
+        <h2 class="secao-titulo">🐉 Arquivos dos Dragões</h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>📖 O Primeiro Voo</h3>
+                <div class="categoria">Domador de Dragões</div>
+                <p>História dos primeiros dragões.</p>
+                <div class="recompensa">
+                    +40 EXP Domador de Dragões<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('538')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Xavier: O Registro Original</h3>
+                <div class="categoria">Pesquisador Arcano</div>
+                <p>Primeiras observações sobre Xavier.</p>
+                <div class="recompensa">
+                    +40 EXP Pesquisador Arcano<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('999')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Os Nove Dragões Primordiais</h3>
+                <div class="categoria">Historiador Arcano</div>
+                <p>Catálogo dos dragões ancestrais.</p>
+                <div class="recompensa">
+                    +40 EXP Historiador Arcano<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('741')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Ritual dos Condutores</h3>
+                <div class="categoria">Condutor</div>
+                <p>Primeira versão do ritual utilizado para controlar dragões.</p>
+                <div class="recompensa">
+                    +40 EXP Condutor<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('515')">Ler Livro</button>
+            </div>
+
+        </div>
+
+        <div class="separador"></div>
+
+        <!-- ====================================================
+👑 ARQUIVOS DOS POVOS
+==================================================== -->
+
+        <h2 class="secao-titulo">👑 Arquivos dos Povos</h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>📖 Contos para Crianças de Sylvanora</h3>
+                <div class="categoria">Educador</div>
+                <p>Histórias infantis sobre espíritos da floresta.</p>
+                <div class="recompensa">
+                    +20 EXP Educador<br>
+                    +0,1% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('303')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 As Aventuras do Pequeno Sol</h3>
+                <div class="categoria">Educador</div>
+                <p>Livro infantil de Solharis.</p>
+                <div class="recompensa">
+                    +20 EXP Educador<br>
+                    +0,1% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('848')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 O Escudeiro e o Dragão</h3>
+                <div class="categoria">Contador de Histórias</div>
+                <p>Lenda popular antiga.</p>
+                <div class="recompensa">
+                    +20 EXP Contador de Histórias<br>
+                    +0,1% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('111')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 As Cem Fábulas do Continente</h3>
+                <div class="categoria">Bardo</div>
+                <p>Coleção de histórias tradicionais.</p>
+                <div class="recompensa">
+                    +30 EXP Bardo<br>
+                    +0,2% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('381')">Ler Livro</button>
+            </div>
+
+        </div>
+
+        <div class="separador"></div>
+
+        <!-- ====================================================
+⚙️ ARQUIVOS DO CONHECIMENTO MORTAL
+==================================================== -->
+
+        <h2 class="secao-titulo">⚙️ Arquivos do Conhecimento Mortal</h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>📖 A Arte da Ferraria</h3>
+                <div class="categoria">Ferreiro</div>
+                <p>Primeiro manual de metalurgia.</p>
+                <div class="recompensa">
+                    +40 EXP Ferreiro<br>
+                    +0,2% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('417')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 O Grande Livro das Receitas</h3>
+                <div class="categoria">Cozinheiro</div>
+                <p>Mais de 3.000 receitas catalogadas.</p>
+                <div class="recompensa">
+                    +40 EXP Cozinheiro<br>
+                    +0,2% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('592')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Anatomia Universal</h3>
+                <div class="categoria">Médico</div>
+                <p>Compilação de anatomias de todas as raças.</p>
+                <div class="recompensa">
+                    +40 EXP Médico<br>
+                    +0,3% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('208')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Manual Imperial de Agricultura</h3>
+                <div class="categoria">Agricultor</div>
+                <p>Conhecimentos agrícolas de todos os reinos.</p>
+                <div class="recompensa">
+                    +40 EXP Agricultor<br>
+                    +0,2% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('734')">Ler Livro</button>
+            </div>
+
+            <div class="card">
+                <h3>📖 Tratado da Arquitetura Mundial</h3>
+                <div class="categoria">Arquiteto</div>
+                <p>Métodos de construção de todas as civilizações.</p>
+                <div class="recompensa">
+                    +40 EXP Arquiteto<br>
+                    +0,2% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('651')">Ler Livro</button>
+            </div>
+
+        </div>
+
+        <div class="separador"></div>
+
+        <!-- ====================================================
+🔒 NÚCLEO PROIBIDO — ALA DO PRIMEIRO ALVORECER
+==================================================== -->
+
+        <h2 class="secao-titulo">🔒 Núcleo Proibido — Ala do Primeiro Alvorecer</h2>
+
+        <p class="secao-descricao">
+
+            "Se chegou até aqui, já sabe demais."
+
+        </p>
+
+        <div class="grid">
+
+            <div class="card proibido">
+                <h3>📕 O Verdadeiro Milênio Perdido</h3>
+                <div class="categoria">História Proibida</div>
+                <p>Revela exatamente o que ocorreu antes da história conhecida.</p>
+                <div class="recompensa">
+                    +40 EXP Historiador Arcano<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('146')">
+                    Acessar Registro
+                </button>
+            </div>
+
+            <div class="card proibido">
+                <h3>📕 O Livro da Fissura</h3>
+                <div class="categoria">Pesquisa Proibida</div>
+                <p>Explica a origem da Fissura.</p>
+                <div class="recompensa">
+                    +40 EXP Pesquisador Arcano<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('883')">
+                    Acessar Registro
+                </button>
+            </div>
+
+            <div class="card proibido">
+                <h3>📕 Os Arquitetos da Realidade</h3>
+                <div class="categoria">Arcanista</div>
+                <p>Primeira menção aos criadores da Quinta Magia.</p>
+                <div class="recompensa">
+                    +40 EXP Arcanista<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('327')">
+                    Acessar Registro
+                </button>
+            </div>
+
+            <div class="card proibido">
+                <h3>📕 As Cinco Leis Fundamentais</h3>
+                <div class="categoria">Arcanista / Pesquisador</div>
+                <p>Documento que originou todos os estudos da 5th Magic.</p>
+                <div class="recompensa">
+                    +40 EXP Arcanista<br>
+                    +40 EXP Pesquisador Arcano<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('719')">
+                    Acessar Registro
+                </button>
+            </div>
+
+            <div class="card proibido">
+                <h3>📕 O Nome dos Deuses Mortos</h3>
+                <div class="categoria">Clérigo / Historiador</div>
+                <p>Contém entidades removidas da história.</p>
+                <div class="recompensa">
+                    +40 EXP Clérigo<br>
+                    +40 EXP Historiador Arcano<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('455')">
+                    Acessar Registro
+                </button>
+            </div>
+
+            <div class="card proibido">
+                <h3>📕 Registro Zero</h3>
+                <div class="categoria">Pesquisador / Condutor</div>
+                <p>Primeiro documento já escrito por um ser inteligente.</p>
+                <div class="recompensa">
+                    +40 EXP Pesquisador Arcano<br>
+                    +40 EXP Condutor<br>
+                    +0,5% NEA
+                </div>
+                <button class="btn" onclick="abrirLivro('624')">
+                    Acessar Registro
+                </button>
+            </div>
+
+            <div class="card proibido">
+                <h3>📕 O Último Livro</h3>
+                <div class="categoria">Classificação Máxima</div>
+                <p>O livro mais protegido da Biblioteca. Nenhum título em sua capa. Nenhum autor. Nenhuma data. Ao
+                    abri-lo, cada leitor vê algo diferente.</p>
+                <div class="recompensa">
+                    +40 EXP em um ofício à escolha<br>
+                    +0,5% NEA<br>
+                    <strong>Título: 🌅 Herdeiro do Primeiro Alvorecer</strong><br>
+                    <em>Última Frase: "A Quinta Magia não é uma magia. É a linguagem usada para escrever as leis da
+                        existência."</em>
+                </div>
+                <button class="btn" onclick="abrirLivro('872')">
+                    Acessar Registro
+                </button>
+            </div>
+
+        </div>
+
+        <div class="separador"></div>
+
+        <!-- ====================================================
+🚪 O ARQUIVO INEXISTENTE
+==================================================== -->
+
+        <h2 class="secao-titulo">🚪 O Arquivo Inexistente</h2>
+
+        <p class="secao-descricao">
+            No centro da Biblioteca do Primeiro Alvorecer existe uma porta colossal.<br><br>
+            Segundo as lendas, atrás dela estão guardados:<br>
+            • O nome verdadeiro da Fissura.<br>
+            • A origem dos dragões.<br>
+            • A história completa do Milênio Perdido.<br>
+            • O destino final dos Primeiros Reis.<br>
+            • O motivo pelo qual a Quinta Magia foi proibida.<br><br>
+            E uma única inscrição gravada na porta:<br>
+            <em>"Quando o último Condutor despertar o último Dragão, a biblioteca voltará a abrir."</em>
+        </p>
+
+        <div class="voltar">
+            <a href="../bibliotecas.html">
+                ← Voltar às Bibliotecas
+            </a>
+        </div>
+
+
+
+    </div>
+
+    <footer>
+
+        Biblioteca do Primeiro Alvorecer • O Primeiro Registro • Eternidade
+
+    </footer>
+
+
+    <script>
+
+        const livros = {
+
+            // ARQUIVOS FUNDAMENTAIS DA CIVILIZAÇÃO
+            livro1: { senha: "PRIMEIROS-REIS-001", arquivo: "livros/o-livro-dos-primeiros-reis.html" },
+            livro2: { senha: "FUNDACAO-002", arquivo: "livros/cronicas-da-fundacao-do-mundo-conhecido.html" },
+            livro3: { senha: "ATLAS-003", arquivo: "livros/atlas-original-do-continente.html" },
+            livro4: { senha: "SECULO-004", arquivo: "livros/o-seculo-perdido.html" },
+            livro5: { senha: "999-CIDADES-005", arquivo: "livros/as-999-cidades-esquecidas.html" },
+
+            // CAMINHOS MARCIAIS
+            livro6: { senha: "RAIZES-101", arquivo: "livros/o-caminho-das-raizes-eternas.html" },
+            livro7: { senha: "ESTELARIS-102", arquivo: "livros/fluxo-de-estelaris.html" },
+            livro8: { senha: "SOLAR-103", arquivo: "livros/disciplina-solar-suprema.html" },
+            livro9: { senha: "VEU-104", arquivo: "livros/veu-celestial-original.html" },
+            livro10: { senha: "DUNAS-105", arquivo: "livros/caminho-das-dunas-ancestrais.html" },
+            livro11: { senha: "MARTELO-106", arquivo: "livros/martelo-primordial.html" },
+            livro12: { senha: "OLHO-107", arquivo: "livros/olho-absoluto.html" },
+            livro13: { senha: "MAGMATICO-108", arquivo: "livros/coracao-magmatico-original.html" },
+            livro14: { senha: "PRESA-109", arquivo: "livros/presa-primordial.html" },
+
+            // DRAGÕES
+            livro15: { senha: "PRIMEIRO-VOO-201", arquivo: "livros/o-primeiro-voo.html" },
+            livro16: { senha: "XAVIER-202", arquivo: "livros/xavier-o-registro-original.html" },
+            livro17: { senha: "NOVE-DRAGOES-203", arquivo: "livros/os-nove-dragoes-primordiais.html" },
+            livro18: { senha: "CONDUTORES-204", arquivo: "livros/ritual-dos-condutores.html" },
+
+            // POVOS
+            livro19: { senha: "SYLVANORA-301", arquivo: "livros/contos-para-criancas-de-sylvanora.html" },
+            livro20: { senha: "PEQUENO-SOL-302", arquivo: "livros/as-aventuras-do-pequeno-sol.html" },
+            livro21: { senha: "ESCUDEIRO-303", arquivo: "livros/o-escudeiro-e-o-dragao.html" },
+            livro22: { senha: "FABULAS-304", arquivo: "livros/as-cem-fabulas-do-continente.html" },
+
+            // CONHECIMENTO MORTAL
+            livro23: { senha: "FERRARIA-401", arquivo: "livros/a-arte-da-ferraria.html" },
+            livro24: { senha: "RECEITAS-402", arquivo: "livros/o-grande-livro-das-receitas.html" },
+            livro25: { senha: "ANATOMIA-403", arquivo: "livros/anatomia-universal.html" },
+            livro26: { senha: "AGRICULTURA-404", arquivo: "livros/manual-imperial-de-agricultura.html" },
+            livro27: { senha: "ARQUITETURA-405", arquivo: "livros/tratado-da-arquitetura-mundial.html" },
+
+            // NÚCLEO PROIBIDO
+            proibido1: {
+                senha: "MILENIO-900",
+                arquivo: "livros/o-verdadeiro-milenio-perdido.html"
+            },
+
+            proibido2: {
+                senha: "FISSURA-901",
+                arquivo: "livros/o-livro-da-fissura.html"
+            },
+
+            proibido3: {
+                senha: "ARQUITETOS-902",
+                arquivo: "livros/os-arquitetos-da-realidade.html"
+            },
+
+            proibido4: {
+                senha: "CINCO-LEIS-903",
+                arquivo: "livros/as-cinco-leis-fundamentais.html"
+            },
+
+            proibido5: {
+                senha: "DEUSES-MORTOS-904",
+                arquivo: "livros/o-nome-dos-deuses-mortos.html"
+            },
+
+            proibido6: {
+                senha: "REGISTRO-ZERO-905",
+                arquivo: "livros/registro-zero.html"
+            },
+
+            proibido7: {
+                senha: "ULTIMO-LIVRO-999",
+                arquivo: "livros/o-ultimo-livro.html"
+            }
+        };
+
+        function abrirLivro(id) {
+
+            const livro = livros[id];
+
+            if (!livro) {
+                alert("Arquivo não encontrado.");
+                return;
+            }
+
+            const senha = prompt("Digite a senha de acesso:");
+
+            if (senha === null) return;
+
+            if (senha.toUpperCase() === livro.senha.toUpperCase()) {
+
+                window.location.href = livro.arquivo;
+
+            } else {
+
+                alert("Senha incorreta.");
+
+            }
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>

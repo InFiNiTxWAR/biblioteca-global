@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <title>Voldoun — Salão das Pedras Ancestrais</title>
+
+   <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+   <style>
+      /* ===========================
+   RESET
+=========================== */
+
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      html {
+         scroll-behavior: smooth;
+      }
+
+      /* ===========================
+   BODY
+=========================== */
+
+      body {
+
+         min-height: 100vh;
+
+         background:
+            linear-gradient(rgba(8, 12, 8, .88),
+               rgba(6, 10, 6, .94)),
+
+            url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
+
+         background-size: cover;
+         background-position: center;
+         background-attachment: fixed;
+
+         font-family: 'Cormorant Garamond', serif;
+
+         color: #f4e7c1;
+      }
+
+      /* ===========================
+   HEADER
+=========================== */
+
+      header {
+
+         padding: 70px 20px;
+
+         text-align: center;
+
+         border-bottom: 1px solid rgba(214, 170, 83, .25);
+
+         backdrop-filter: blur(2px);
+      }
+
+      header h1 {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 3.8rem;
+
+         color: #f5d48b;
+
+         text-shadow:
+            0 0 15px rgba(245, 212, 139, .35);
+
+         margin-bottom: 15px;
+      }
+
+      header .subtitulo {
+
+         font-size: 1.5rem;
+
+         color: #d8c79d;
+
+         font-style: italic;
+
+         margin-bottom: 20px;
+      }
+
+      header .descricao {
+
+         max-width: 900px;
+
+         margin: auto;
+
+         font-size: 1.25rem;
+
+         line-height: 1.7;
+
+         color: #e7d7b1;
+      }
+
+      /* ===========================
+   CONTAINER
+=========================== */
+
+      .container {
+
+         max-width: 1500px;
+
+         margin: auto;
+
+         padding: 50px 30px 80px;
+      }
+
+      /* ===========================
+   TITULOS DE SESSÃO
+=========================== */
+
+      .secao-titulo {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 2rem;
+
+         color: #f5d48b;
+
+         margin-bottom: 10px;
+
+         text-shadow:
+            0 0 8px rgba(245, 212, 139, .25);
+      }
+
+      .secao-descricao {
+
+         font-size: 1.2rem;
+
+         color: #d7c59b;
+
+         margin-bottom: 30px;
+
+         line-height: 1.7;
+      }
+
+      .separador {
+
+         margin: 60px 0;
+
+         height: 2px;
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               rgba(214, 170, 83, .6),
+               transparent);
+      }
+
+      /* ===========================
+   GRID DE LIVROS
+=========================== */
+
+      .grid {
+
+         display: grid;
+
+         grid-template-columns:
+            repeat(auto-fit, minmax(320px, 1fr));
+
+         gap: 25px;
+      }
+
+      /* ===========================
+   CARD PADRÃO
+=========================== */
+
+      .card {
+
+         background:
+            rgba(35, 25, 15, .93);
+
+         border: 2px solid #8f6b2c;
+
+         border-radius: 14px;
+
+         padding: 24px;
+
+         transition: .35s;
+
+         box-shadow:
+            0 0 15px rgba(0, 0, 0, .45);
+
+         position: relative;
+
+         overflow: hidden;
+      }
+
+      .card::before {
+
+         content: "";
+
+         position: absolute;
+
+         top: 0;
+         left: 0;
+
+         width: 100%;
+         height: 4px;
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #d6aa53,
+               transparent);
+      }
+
+      .card:hover {
+
+         transform: translateY(-8px);
+
+         border-color: #d6aa53;
+
+         box-shadow:
+            0 0 25px rgba(214, 170, 83, .20);
+      }
+
+      .card h3 {
+
+         font-family: 'Cinzel', serif;
+
+         font-size: 1.25rem;
+
+         color: #f5d48b;
+
+         margin-bottom: 10px;
+
+         line-height: 1.4;
+      }
+
+      .categoria {
+
+         display: inline-block;
+
+         padding: 5px 10px;
+
+         background:
+            rgba(214, 170, 83, .12);
+
+         border: 1px solid rgba(214, 170, 83, .25);
+
+         border-radius: 20px;
+
+         font-size: .95rem;
+
+         margin-bottom: 15px;
+
+         color: #f3d18b;
+      }
+
+      .card p {
+
+         font-size: 1.08rem;
+
+         line-height: 1.6;
+
+         color: #e6d7b5;
+
+         margin-bottom: 18px;
+      }
+
+      /* ===========================
+   RECOMPENSAS
+=========================== */
+
+      .recompensa {
+
+         background:
+            rgba(0, 0, 0, .20);
+
+         border-left: 4px solid #d6aa53;
+
+         padding: 12px;
+
+         border-radius: 6px;
+
+         font-size: 1rem;
+
+         margin-bottom: 18px;
+
+         line-height: 1.6;
+      }
+
+      .recompensa strong {
+
+         color: #f5d48b;
+      }
+
+      /* ===========================
+   BOTÃO
+=========================== */
+
+      .btn {
+
+         width: 100%;
+
+         border: none;
+
+         cursor: pointer;
+
+         padding: 12px;
+
+         font-size: 1rem;
+
+         font-weight: bold;
+
+         font-family: 'Cinzel', serif;
+
+         border-radius: 8px;
+
+         background: #8f6b2c;
+
+         color: white;
+
+         transition: .3s;
+      }
+
+      .btn:hover {
+
+         background: #d6aa53;
+
+         color: #23170d;
+      }
+
+      /* ===========================
+   LIVRO RARO
+=========================== */
+
+      .raro {
+
+         border: 2px solid #c9a84a;
+
+         background:
+            rgba(58, 44, 18, .94);
+      }
+
+      .raro::before {
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #ffd369,
+               transparent);
+      }
+
+      .raro h3 {
+
+         color: #ffd369;
+      }
+
+      /* ===========================
+   ALA PROIBIDA
+=========================== */
+
+      .proibido {
+
+         background:
+            rgba(30, 10, 10, .95);
+
+         border: 2px solid #8f1d1d;
+      }
+
+      .proibido::before {
+
+         background:
+            linear-gradient(90deg,
+               transparent,
+               #d64040,
+               transparent);
+      }
+
+      .proibido h3 {
+
+         color: #ff7b7b;
+      }
+
+      .proibido .categoria {
+
+         background:
+            rgba(255, 0, 0, .10);
+
+         border-color:
+            rgba(255, 0, 0, .25);
+
+         color: #ff9b9b;
+      }
+
+      .proibido .btn {
+
+         background: #7f1d1d;
+      }
+
+      .proibido .btn:hover {
+
+         background: #c73434;
+
+         color: white;
+      }
+
+      /* ===========================
+   VOLTAR
+=========================== */
+
+      .voltar {
+
+         text-align: center;
+
+         margin-top: 60px;
+      }
+
+      .voltar a {
+
+         display: inline-block;
+
+         text-decoration: none;
+
+         padding: 12px 25px;
+
+         border-radius: 8px;
+
+         background: #8f6b2c;
+
+         color: white;
+
+         font-family: 'Cinzel', serif;
+
+         transition: .3s;
+      }
+
+      .voltar a:hover {
+
+         background: #d6aa53;
+
+         color: #23170d;
+      }
+
+      /* ===========================
+   FOOTER
+=========================== */
+
+      footer {
+
+         text-align: center;
+
+         padding: 40px;
+
+         border-top: 1px solid rgba(214, 170, 83, .15);
+
+         color: #c9b27a;
+
+         font-size: 1rem;
+      }
+
+      /* ===========================
+   RESPONSIVO
+=========================== */
+
+      @media(max-width:768px) {
+
+         header h1 {
+            font-size: 2.5rem;
+         }
+
+         header .descricao {
+            font-size: 1.1rem;
+         }
+
+         .secao-titulo {
+            font-size: 1.6rem;
+         }
+
+         .grid {
+            grid-template-columns: 1fr;
+         }
+
+      }
+   </style>
+</head>
+
+<body>
+
+   <header>
+
+      <h1>⛰️ Salão das Pedras Ancestrais</h1>
+
+      <div class="subtitulo">
+         "A rocha guarda aquilo que o tempo não destrói."
+      </div>
+
+      <div class="descricao">
+
+         Ao invés de livros, grande parte do conhecimento de Voldoun é preservada
+         em placas de pedra e metal. Cada inscrição carrega séculos de história,
+         tradições e descobertas dos povos das montanhas.
+
+      </div>
+
+   </header>
+
+   <div class="container">
+
+      <!-- ====================================================
+⛰️ REGISTROS DISPONÍVEIS EM VOLDOUN
+==================================================== -->
+
+      <h2 class="secao-titulo">⛰️ Registros Disponíveis</h2>
+
+      <p class="secao-descricao">
+         Diferente das demais bibliotecas do continente, o Salão das Pedras Ancestrais
+         não guarda livros de papel. Seus conhecimentos são gravados em enormes placas
+         de pedra, colunas rúnicas e tábuas metálicas capazes de sobreviver por milênios.
+      </p>
+
+      <div class="grid">
+
+         <div class="card">
+            <h3>📖 Os Primeiros Forjadores</h3>
+            <div class="categoria">Ferreiro</div>
+            <p>Relato dos mestres anões que fundaram as primeiras forjas.</p>
+            <div class="recompensa">+40 EXP Ferreiro<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('412')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Mineração das Profundezas</h3>
+            <div class="categoria">Minerador</div>
+            <p>Métodos para localizar jazidas raras.</p>
+            <div class="recompensa">+40 EXP Minerador<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('583')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Engenharia de Fortalezas</h3>
+            <div class="categoria">Engenheiro Militar</div>
+            <p>Construção de muralhas e fortalezas.</p>
+            <div class="recompensa">+40 EXP Engenheiro Militar<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('724')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Manual dos Vigias da Montanha</h3>
+            <div class="categoria">Sentinela</div>
+            <p>Treinamentos utilizados pelos guardas dos picos.</p>
+            <div class="recompensa">+30 EXP Sentinela<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('291')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Livro das Ligas Raras</h3>
+            <div class="categoria">Metalurgista</div>
+            <p>Misturas metálicas exclusivas de Voldoun.</p>
+            <div class="recompensa">+40 EXP Metalurgista<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('846')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Sobrevivência nas Alturas</h3>
+            <div class="categoria">Sobrevivencialista</div>
+            <p>Técnicas para resistir ao frio extremo.</p>
+            <div class="recompensa">+35 EXP Sobrevivencialista<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('135')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Criação de Armaduras de Guerra</h3>
+            <div class="categoria">Armeiro</div>
+            <p>Métodos de fabricação militar.</p>
+            <div class="recompensa">+40 EXP Armeiro<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('967')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Código dos Clãs</h3>
+            <div class="categoria">Diplomata</div>
+            <p>Leis e tradições dos antigos clãs montanheses.</p>
+            <div class="recompensa">+30 EXP Diplomata<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('458')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Anatomia dos Gigantes Alpinos</h3>
+            <div class="categoria">Caçador</div>
+            <p>Registro de criaturas das montanhas.</p>
+            <div class="recompensa">+35 EXP Caçador<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('672')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Rotas dos Desfiladeiros</h3>
+            <div class="categoria">Explorador</div>
+            <p>Mapas das passagens ocultas de Voldoun.</p>
+            <div class="recompensa">+35 EXP Explorador<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('384')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Hidromel dos Anciões</h3>
+            <div class="categoria">Mestre Cervejeiro</div>
+            <p>Receitas tradicionais das montanhas.</p>
+            <div class="recompensa">+25 EXP Mestre Cervejeiro<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('551')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Táticas do Martelo de Guerra</h3>
+            <div class="categoria">Estrategista</div>
+            <p>Formações militares utilizadas durante cercos.</p>
+            <div class="recompensa">+40 EXP Estrategista<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('829')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Construções Esculpidas na Rocha</h3>
+            <div class="categoria">Arquiteto</div>
+            <p>Projetos das cidades-fortaleza.</p>
+            <div class="recompensa">+35 EXP Arquiteto<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('246')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 O Valor do Aço</h3>
+            <div class="categoria">Comerciante</div>
+            <p>Comércio de armas e minérios.</p>
+            <div class="recompensa">+30 EXP Comerciante<br>+0,1% NEA</div>
+            <button class="btn" onclick="abrirLivro('708')">Ler Registro</button>
+         </div>
+
+         <div class="card">
+            <h3>📖 Crônicas do Martelo das Montanhas</h3>
+            <div class="categoria">Historiador</div>
+            <p>Relatos sobre Kaelor Drath e a expansão de Voldoun.</p>
+            <div class="recompensa">+40 EXP Historiador<br>+0,2% NEA</div>
+            <button class="btn" onclick="abrirLivro('913')">Ler Registro</button>
+         </div>
+
+      </div>
+
+      <div class="separador"></div>
+
+      <h2 class="secao-titulo">🌟 Registro Lendário</h2>
+
+      <div class="grid">
+
+         <div class="card raro">
+
+            <h3>📜 As Tábuas de Kaelor Drath</h3>
+
+            <div class="categoria">
+               Estrategista / Engenheiro Militar
+            </div>
+
+            <p>
+               Doze placas de adamantita contendo os ensinamentos do lendário
+               Martelo das Montanhas.
+            </p>
+
+            <div class="recompensa">
+               +40 EXP Estrategista<br>
+               +40 EXP Engenheiro Militar<br>
+               +0,5% NEA<br><br>
+
+               ⛰️ Herdeiro das Montanhas
+            </div>
+
+            <button class="btn" onclick="abrirLivro('999')">
+               Acessar Registro Lendário
+            </button>
+
+         </div>
+
+      </div>
+
+      <div class="separador"></div>
+
+      <h2 class="secao-titulo">
+         🔒 Câmara Proibida — Salão do Núcleo Profundo
+      </h2>
+
+      <p class="secao-descricao">
+         "Existem pedras tão antigas que lembram de quando o mundo era diferente."
+      </p>
+
+      <div class="grid">
+
+         <div class="card proibido">
+            <h3>📕 O Milênio Sob a Pedra</h3>
+            <div class="categoria">História Proibida</div>
+            <p>Registros encontrados em cavernas anteriores à fundação de Voldoun.</p>
+            <div class="recompensa">+40 EXP Historiador Arcano<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('741')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 A Quinta Forja</h3>
+            <div class="categoria">5th Magic</div>
+            <p>Primeiro registro anão sobre a Quinta Magia.</p>
+            <div class="recompensa">+40 EXP Arcanista<br>+40 EXP Ferreiro<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('555')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 O Trono de Basalto</h3>
+            <div class="categoria">Reino Perdido</div>
+            <p>Relatos sobre um reino subterrâneo desaparecido.</p>
+            <div class="recompensa">+40 EXP Arqueólogo Arcano<br>+35 EXP Historiador<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('808')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 As Profundezas sem Fim</h3>
+            <div class="categoria">Exploração Proibida</div>
+            <p>Expedições realizadas abaixo das minas mais profundas.</p>
+            <div class="recompensa">+40 EXP Explorador<br>+40 EXP Minerador<br>+0,5% NEA</div>
+            <button class="btn" onclick="abrirLivro('117')">Acessar Registro</button>
+         </div>
+
+         <div class="card proibido">
+            <h3>📕 O Coração da Montanha Primordial</h3>
+            <div class="categoria">Classificação Máxima</div>
+            <p>A placa mais antiga já encontrada em todo Voldoun.</p>
+            <div class="recompensa">
+               +40 EXP Arcanista<br>
+               +40 EXP Historiador Arcano<br>
+               +0,5% NEA
+            </div>
+            <button class="btn" onclick="abrirLivro('001')">
+               Acessar Registro
+            </button>
+         </div>
+
+      </div>
+
+      <div class="voltar">
+         <a href="../bibliotecas.html">
+            ← Voltar às Bibliotecas
+         </a>
+      </div>
+
+   </div>
+
+   <footer>
+
+      Salão das Pedras Ancestrais • Reino de Voldoun • Ano 5002
+
+   </footer>
+   <script>
+
+      const livros = {
+
+         /* ==========================
+            REGISTROS DISPONÍVEIS
+         ========================== */
+
+         "412": "livros/primeiros_forjadores.html",
+         "583": "livros/mineracao_profundezas.html",
+         "724": "livros/engenharia_fortalezas.html",
+         "291": "livros/manual_vigias_montanha.html",
+         "846": "livros/ligas_raras.html",
+         "135": "livros/sobrevivencia_alturas.html",
+         "967": "livros/armaduras_guerra.html",
+         "458": "livros/codigo_dos_clas.html",
+         "672": "livros/anatomia_gigantes_alpinos.html",
+         "384": "livros/rotas_desfiladeiros.html",
+         "551": "livros/hidromel_dos_ancioes.html",
+         "829": "livros/taticas_martelo_guerra.html",
+         "246": "livros/construcoes_esculpidas_rocha.html",
+         "708": "livros/valor_do_aco.html",
+         "913": "livros/cronicas_martelo_montanhas.html",
+
+         /* ==========================
+            REGISTRO LENDÁRIO
+         ========================== */
+
+         "999": "livros/tabuas_kaelor_drath.html",
+
+         /* ==========================
+            SALÃO DO NÚCLEO PROFUNDO
+         ========================== */
+
+         "741": "livros/milenio_sob_pedra.html",
+         "555": "livros/quinta_forja.html",
+         "808": "livros/trono_basalto.html",
+         "117": "livros/profundezas_sem_fim.html",
+         "001": "livros/coracao_montanha_primordial.html"
+
+      };
+
+      function abrirLivro(codigoEsperado) {
+
+         const codigo = prompt(
+            "⛰️ Insira o código da placa ancestral:"
+         );
+
+         if (codigo === null) {
+            return;
+         }
+
+         if (codigo === codigoEsperado) {
+
+            window.location.href =
+               livros[codigoEsperado];
+
+         } else {
+
+            alert(
+               "❌ Os Guardiões de Voldoun recusaram seu acesso.\n\nCódigo inválido."
+            );
+
+         }
+
+      }
+
+   </script>
+
+</body>
+
+</html>
